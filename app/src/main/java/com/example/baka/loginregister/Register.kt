@@ -70,7 +70,7 @@ class Register : AppCompatActivity() {
         // Menangani event klik teks "Masuk" untuk berpindah ke halaman login
         loginText.setOnClickListener {
             // Pindah ke halaman LoginActivity
-            val intent = Intent(this@Register, MainActivity::class.java)
+            val intent = Intent(this@Register, loginActivity::class.java)
             startActivity(intent)
         }
     }

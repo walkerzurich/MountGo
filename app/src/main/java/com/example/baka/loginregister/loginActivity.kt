@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.baka.R
 
-class MainActivity : AppCompatActivity() {
+class loginActivity : AppCompatActivity() {
 
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
@@ -18,14 +18,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
         // Inisialisasi TextView untuk "Lupa kata sandi"
         val forgotPasswordText: TextView = findViewById(R.id.lupasandiLink)
 
         // Ketika "Lupa kata sandi" diklik, pindah ke halaman ForgotPasswordActivity
         forgotPasswordText.setOnClickListener {
-            val intent = Intent(this@MainActivity, ForgotPasswordActivity::class.java)
+            val intent = Intent(this@loginActivity, ForgotPasswordActivity::class.java)
             startActivity(intent)
         }
 
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         // Ketika "Daftar" atau "Masuk" diklik, pindah ke halaman RegisterActivity
         registerLink.setOnClickListener {
-            val intent = Intent(this@MainActivity, Register::class.java)
+            val intent = Intent(this@loginActivity, Register::class.java)
             startActivity(intent)
         }
 

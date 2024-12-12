@@ -35,7 +35,7 @@
             android:name=".loginregister.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".loginregister.MainActivity"
+            android:name=".loginregister.loginActivity"
             android:exported="false" />
         <activity
             android:name=".loginregister.Register"
