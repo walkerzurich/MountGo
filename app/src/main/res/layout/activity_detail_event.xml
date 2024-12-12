@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailEvent">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="415dp"
+        android:layout_height="312dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/camping" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/articleCard"
+        android:layout_width="410dp"
+        android:layout_height="674dp"
+        android:layout_marginTop="240dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Kategori -->
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/articleTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Camping Ceria"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/authorName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="By BintangTraveler"
+                        android:textColor="#777777"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/apa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Gn. Merbabu, Boyolali, Jawa Tengah"
+                        android:textColor="#777777"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/articleContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Lorem ipsum dolor sit amet consectetur. Orci lorem turpis porttitor lobortis amet suspendisse quis mattis vivamus. Magnis vitae tempus sit at sed nec nunc convallis. Scelerisque imperdiet eget viverra condimentum eleifend pretium. Orci integer morbi integer ipsum ornare mauris. Ipsum morbi ac venenatis scelerisque. Facilisis vitae a blandit amet. Scelerisque diam consectetur accumsan etiam bibendum. Gravida lectus at accumsan velit viverra.  Risus odio hendrerit scelerisque id tincidunt volutpat facilisis. In fermentum euismod a consectetur. Fringilla enim urna consequat ornare amet platea. Ultrices ipsum scelerisque urna ac nulla pharetra diam. Purus sagittis augue adipiscing dictum lorem ullamcorper urna."
+                        android:textColor="#555555"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+            <!-- Judul Artikel -->
+
+            <!-- Nama Penulis -->
+
+            <!-- Isi Artikel -->
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

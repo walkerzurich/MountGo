@@ -12,27 +12,48 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BAKA"
         tools:targetApi="31">
+
         <activity
-            android:name=".detailEvent"
+            android:name=".riwayat.DetailEvent"
             android:exported="false" />
         <activity
-            android:name=".transaksiSelesai"
+            android:name=".transaksi.transaksiSelesai"
             android:exported="false" />
         <activity
-            android:name=".FormPendakian"
+            android:name=".gunung.FormPendakian"
             android:exported="false" />
         <activity
-            android:name=".Information"
+            android:name=".gunung.Information"
             android:exported="false" />
         <activity
-            android:name=".EventPage"
+            android:name=".artikel.Artikel"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".artikel.DetailArtikel"
+            android:exported="false" />
+        <activity
+            android:name=".loginregister.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".loginregister.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".loginregister.Register"
+            android:exported="false" />
+        <activity
+            android:name=".landingpage.LandingPage1"
+            android:exported="false" />
+        <activity
+            android:name=".landingpage.LandingPage2"
+            android:exported="false" />
+        <activity
+            android:name=".landingpage.LandingPage3"
+            android:exported="false" />
+        <activity
+            android:name=".gunung.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".artikel.Artikel">
+
+    <TextView
+        android:id="@+id/tJudulArtikel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Artikel"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bPopuler"
+        android:layout_width="90dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#016236"
+        android:text="Populer"
+        android:textColor="#FFFFFF"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="@+id/tJudulArtikel"
+        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tJudulArtikel" />
+
+    <Button
+        android:id="@+id/bTerbaru"
+        android:layout_width="90dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="15dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Terbaru"
+        android:textColor="#016236"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/bPopuler"
+        app:layout_constraintTop_toTopOf="@+id/bPopuler" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="173dp"
+        android:layout_height="56dp"
+        android:text="7 Perlengkapan Outdoor Paling Favorit di Indonesia, Suka yang Mana?"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="195dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="By Franz Simon"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="250dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 Likes | 10/10/2024"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="286dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="128dp"
+        android:layout_height="127dp"
+        app:srcCompat="@drawable/barang1"
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="195dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="128dp"
+        android:layout_height="127dp"
+        app:srcCompat="@drawable/barang1"
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="344dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="128dp"
+        android:layout_height="127dp"
+        app:srcCompat="@drawable/barang1"
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="491dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="128dp"
+        android:layout_height="127dp"
+        app:srcCompat="@drawable/barang1"
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="642dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="128dp"
+        android:layout_height="127dp"
+        app:srcCompat="@drawable/barang1"
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="792dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
