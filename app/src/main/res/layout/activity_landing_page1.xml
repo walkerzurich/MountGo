@@ -8,23 +8,6 @@
     android:background="#016236"
     tools:context=".LandingPage1">
 
-    <TextView
-        android:id="@+id/tGunung"
-        android:layout_width="232dp"
-        android:layout_height="82dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:textColor="#FFFFFF"
-        android:fontFamily="@font/josefin_sans"
-        android:text="Rekomendasi Gunung yang Cocok dengan Kamu!"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.091" />
-
     <ImageView
         android:id="@+id/iGunung"
         android:layout_width="430dp"
@@ -32,10 +15,27 @@
         android:layout_marginTop="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tGunung"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.333"
         app:srcCompat="@drawable/gunung" />
+
+    <TextView
+        android:id="@+id/tGunung"
+        android:layout_width="232dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/josefin_sans"
+        android:text="Rekomendasi Gunung yang Cocok dengan Kamu!"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.091" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
