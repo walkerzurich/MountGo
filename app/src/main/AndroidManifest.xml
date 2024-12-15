@@ -38,7 +38,7 @@
             android:name=".loginregister.loginActivity"
             android:exported="false" />
         <activity
-            android:name=".loginregister.Register"
+            android:name=".gunung.MainActivity"
             android:exported="false" />
         <activity
             android:name=".landingpage.LandingPage1"
@@ -50,7 +50,7 @@
             android:name=".landingpage.LandingPage3"
             android:exported="false" />
         <activity
-            android:name=".gunung.MainActivity"
+            android:name=".loginregister.Register"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

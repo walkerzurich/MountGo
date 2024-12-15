@@ -52,7 +52,7 @@ class Register : AppCompatActivity() {
         birthDateInput = findViewById(R.id.birth_date)
         genderInput = findViewById(R.id.gender)
         emailInput = findViewById(R.id.email)
-        guardianNameInput = findViewById(R.id.guardian_name)
+        /*guardianNameInput = findViewById(R.id.guardian_name)
         guardianPhoneInput = findViewById(R.id.guardian_phone)
         guardianRelationshipInput = findViewById(R.id.guardian_relationship)
         emergencyContactNameInput = findViewById(R.id.emergency_contact_name)
@@ -60,7 +60,7 @@ class Register : AppCompatActivity() {
         passwordInput = findViewById(R.id.password)
         confirmPasswordInput = findViewById(R.id.confirm_password)
         registerButton = findViewById(R.id.register_button)
-        loginText = findViewById(R.id.registerLink)
+        loginText = findViewById(R.id.registerLink)*/
 
         // Menangani event klik tombol register
         registerButton.setOnClickListener {
