@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EEEEEE"
-    tools:context=".loginregister.loginActivity">
+    tools:context=".gunung.explore">
 
     <!-- Bagian atas layout berwarna hijau -->
     <View

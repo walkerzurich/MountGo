@@ -32,13 +32,13 @@
             android:name=".artikel.DetailArtikel"
             android:exported="false" />
         <activity
-            android:name=".loginregister.ForgotPasswordActivity"
+            android:name=".gunung.explore"
             android:exported="false" />
         <activity
             android:name=".loginregister.loginActivity"
             android:exported="false" />
         <activity
-            android:name=".gunung.MainActivity"
+            android:name=".loginregister.ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".landingpage.LandingPage1"
