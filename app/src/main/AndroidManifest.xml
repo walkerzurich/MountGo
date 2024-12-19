@@ -12,7 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BAKA"
         tools:targetApi="31">
-
+        <activity
+            android:name=".home.home"
+            android:exported="false" />
+        <activity
+            android:name=".profile.profile"
+            android:exported="false" />
         <activity
             android:name=".riwayat.DetailEvent"
             android:exported="false" />
@@ -32,7 +37,7 @@
             android:name=".artikel.DetailArtikel"
             android:exported="false" />
         <activity
-            android:name=".gunung.explore"
+            android:name=".loginregister.Register"
             android:exported="false" />
         <activity
             android:name=".loginregister.loginActivity"
@@ -50,10 +55,11 @@
             android:name=".landingpage.LandingPage3"
             android:exported="false" />
         <activity
-            android:name=".loginregister.Register"
+            android:name=".gunung.explore"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

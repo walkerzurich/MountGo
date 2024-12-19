@@ -70,4 +70,13 @@
                 android:layout_marginTop="8dp" />
         </LinearLayout>
     </ScrollView>
+    <include
+        android:id="@+id/header_shortcut_include"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/navbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

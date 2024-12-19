@@ -11,14 +11,28 @@ import com.example.baka.R
 
 class GunungAdapter(
     private val context: Context,
-    private val gunungList: List<Gunung>
+    private val gunungList: List<Gunung>,
+    private val onItemClick: (Gunung) -> Unit
 ) : RecyclerView.Adapter<GunungAdapter.GunungViewHolder>() {
 
-    class GunungViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ivGunung: ImageView = itemView.findViewById(R.id.ivGunung)
-        val tvNamaGunung: TextView = itemView.findViewById(R.id.tvNamaGunung)
-        val tvLokasiGunung: TextView = itemView.findViewById(R.id.tvLokasiGunung)
+    inner class GunungViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val namaGunung: TextView = view.findViewById(R.id.tvNamaGunung)
+        val alamatGunung: TextView = view.findViewById(R.id.tvLokasiGunung)
+        val imageGunung: ImageView = view.findViewById(R.id.ivGunung)
+
+        fun bind(gunung: Gunung) {
+            namaGunung.text = gunung.nama
+            alamatGunung.text = gunung.alamat
+            imageGunung.setImageResource(gunung.imageRes)
+
+            // Set onClickListener for each item
+            itemView.setOnClickListener {
+                onItemClick(gunung)
+            }
+        }
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GunungViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_gunung, parent, false)
@@ -26,15 +40,8 @@ class GunungAdapter(
     }
 
     override fun onBindViewHolder(holder: GunungViewHolder, position: Int) {
-        val gunung = gunungList[position]
-        holder.ivGunung.setImageResource(gunung.imageRes)
-        holder.tvNamaGunung.text = gunung.nama
-        holder.tvLokasiGunung.text = gunung.lokasi
+        holder.bind(gunungList[position])
     }
 
-    override fun getItemCount(): Int {
-        return gunungList.size
-    }
+    override fun getItemCount(): Int = gunungList.size
 }
-
-data class Gunung(val nama: String, val lokasi: String, val imageRes: Int)

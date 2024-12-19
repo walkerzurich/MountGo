@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -10,145 +9,59 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header -->
-
-        <!-- Gambar Header -->
         <ImageView
+            android:id="@+id/imgGunung"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@android:color/darker_gray"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:background="@android:color/darker_gray" />
 
-        <!-- Title -->
         <TextView
+            android:id="@+id/tvNamaGunung"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Gunung Merbabu"
+            android:text="Nama Gunung"
             android:textSize="24sp"
             android:textColor="@android:color/black" />
 
         <TextView
+            android:id="@+id/tvAlamatGunung"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="16dp"
-            android:text="Boyolali, Jawa Tengah"
+            android:text="Alamat Gunung"
             android:textSize="16sp"
             android:textColor="@android:color/darker_gray" />
 
-        <!-- Deskripsi -->
         <TextView
+            android:id="@+id/tvDeskripsiGunung"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:text="Gunung Merbabu adalah salah satu gunung berapi yang sering dijadikan tujuan pendakian. Gunung dengan ketinggian 3.145 meter di atas permukaan laut ini melintasi tiga wilayah kabupaten di Jawa Tengah. Di sebelah barat terdapat Kabupaten Magelang dan di sebelah utara Kabupaten Semarang, sementara sisi timur dan selatan masuk dalam wilayah Kabupaten Boyolali."
+            android:text="Deskripsi Gunung"
             android:textSize="14sp"
             android:textColor="@android:color/black" />
 
-        <!-- Alamat -->
         <TextView
+            android:id="@+id/tvMedan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="16dp"
             android:paddingTop="8dp"
-            android:text="Alamat"
-            android:textSize="16sp"
+            android:text="Medan"
             android:textColor="@android:color/black"
-            android:textStyle="bold" />
-
-        <!-- Jam Operasional -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:text="Jl. Merbabu No. 136, Boyolali, Jawa Tengah 57316."
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/tvJamOperasional"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="16dp"
             android:paddingTop="8dp"
             android:text="Jam Operasional"
             android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:text="24 Jam"
-            android:textSize="14sp"
             android:textColor="@android:color/black" />
 
-        <!-- Fasilitas -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingTop="8dp"
-            android:text="Fasilitas"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginEnd="8dp" />
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginEnd="8dp" />
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginEnd="8dp" />
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginEnd="8dp" />
-        </LinearLayout>
-
-        <!-- Peta -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingTop="8dp"
-            android:text="Lihat di Peta"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@android:color/darker_gray"
-            android:layout_margin="16dp" />
-
-        <!-- Button -->
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Book Now"
-            android:backgroundTint="@color/green"
-            android:textColor="@android:color/white" />
     </LinearLayout>
 </ScrollView>
