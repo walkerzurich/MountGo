@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BAKA!</string>
+    <string name="logo_description">Logo aplikasi</string>
+    <string name="access_icon">Ikon akses</string>
 </resources>
