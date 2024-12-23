@@ -19,7 +19,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lupasandi)
 
         // Inisialisasi Firebase Database
-        database = FirebaseDatabase.getInstance().getReference("users")
+        database = FirebaseDatabase.getInstance().getReference("user")
 
         // Bind Views
         val inputEmail = findViewById<EditText>(R.id.inputEmail)

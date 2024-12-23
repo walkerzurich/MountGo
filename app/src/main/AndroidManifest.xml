@@ -13,6 +13,9 @@
         android:theme="@style/Theme.BAKA"
         tools:targetApi="31">
         <activity
+            android:name=".riwayat.detail_transaksi"
+            android:exported="false" />
+        <activity
             android:name=".transaksi.transaksiSelesai"
             android:exported="false" />
         <activity
