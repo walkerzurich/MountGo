@@ -2,6 +2,7 @@ package com.example.baka.home
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.LinearInterpolator
 import android.widget.TextView
@@ -12,9 +13,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baka.R
+import com.example.baka.gunung.explore
 import com.example.baka.home.ArtikelAdapter
 import com.example.baka.home.EventAdapter
 import com.example.baka.home.RekomendasiGunungAdapter
+import com.example.baka.profile.profile
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class home : AppCompatActivity() {
     private lateinit var recyclerViewRekomendasi: RecyclerView
@@ -24,6 +28,31 @@ class home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        // Inisialisasi BottomNavigationView
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        // Setup navigasi untuk BottomNavigationView
+        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_home -> {
+                    // Tetap di halaman home
+                    true
+                }
+                R.id.nav_explore -> {
+                    // Navigasi ke halaman Search
+                    startActivity(Intent(this, explore::class.java))
+                    true
+                }
+                R.id.nav_profile -> {
+                    // Navigasi ke halaman Profile
+                    startActivity(Intent(this, profile::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+
 
         // Inisialisasi RecyclerView
         recyclerViewRekomendasi = findViewById(R.id.recyclerViewRekomendasi)

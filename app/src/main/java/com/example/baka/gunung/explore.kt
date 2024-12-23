@@ -8,11 +8,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baka.R
 import com.example.baka.home.home
-import com.example.baka.loginregister.ForgotPasswordActivity
-import com.example.baka.loginregister.loginActivity
 import com.example.baka.profile.profile
-import com.example.baka.riwayat.DetailEvent
-import com.example.baka.riwayat.Event
+import com.example.baka.riwayat.daftarTransaksi
 import com.google.firebase.database.*
 
 class explore : AppCompatActivity() {
@@ -45,7 +42,7 @@ class explore : AppCompatActivity() {
 
         // Pindah ke halaman Event
         eventButton.setOnClickListener {
-            val intent = Intent(this, Event::class.java)
+            val intent = Intent(this, daftarTransaksi::class.java)
             startActivity(intent)
         }
 
