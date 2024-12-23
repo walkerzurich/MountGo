@@ -11,6 +11,7 @@ import com.google.android.material.textfield.TextInputEditText
 import android.widget.Button
 import android.widget.AutoCompleteTextView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.example.baka.R
 import java.util.*
 
@@ -21,6 +22,16 @@ class Register : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+
+        // Bind TextView
+        val registerLink = findViewById<TextView>(R.id.registerLink)
+
+        // Set click listener untuk berpindah ke LoginActivity
+        registerLink.setOnClickListener {
+            val intent = Intent(this, loginActivity::class.java)
+            startActivity(intent)
+        }
 
         // Inisialisasi Firebase
         database = FirebaseDatabase.getInstance("https://mountgo-baka-default-rtdb.asia-southeast1.firebasedatabase.app").reference
@@ -122,4 +133,7 @@ class Register : AppCompatActivity() {
 
         datePickerDialog.show()
     }
+
+
+
 }

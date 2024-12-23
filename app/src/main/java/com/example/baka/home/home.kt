@@ -5,20 +5,15 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.animation.LinearInterpolator
+import android.widget.Button
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baka.R
 import com.example.baka.gunung.explore
-import com.example.baka.home.ArtikelAdapter
-import com.example.baka.home.EventAdapter
-import com.example.baka.home.RekomendasiGunungAdapter
-import com.example.baka.profile.profile
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.baka.profile.profile_page
+import com.example.baka.riwayat.daftarTransaksi
 
 class home : AppCompatActivity() {
     private lateinit var recyclerViewRekomendasi: RecyclerView
@@ -29,28 +24,34 @@ class home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Inisialisasi BottomNavigationView
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        // Inisialisasi tombol navbar
+        val homeButton = findViewById<Button>(R.id.homeButton)
+        val exploreButton = findViewById<Button>(R.id.exploreButton)
+        val eventButton = findViewById<Button>(R.id.eventButton)
+        val profileButton = findViewById<Button>(R.id.profileButton)
 
-        // Setup navigasi untuk BottomNavigationView
-        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_home -> {
-                    // Tetap di halaman home
-                    true
-                }
-                R.id.nav_explore -> {
-                    // Navigasi ke halaman Search
-                    startActivity(Intent(this, explore::class.java))
-                    true
-                }
-                R.id.nav_profile -> {
-                    // Navigasi ke halaman Profile
-                    startActivity(Intent(this, profile::class.java))
-                    true
-                }
-                else -> false
-            }
+        // Pindah ke halaman Home
+        homeButton.setOnClickListener {
+            val intent = Intent(this, home::class.java)
+            startActivity(intent)
+        }
+
+        // Pindah ke halaman Explore
+        exploreButton.setOnClickListener {
+            val intent = Intent(this, explore::class.java)
+            startActivity(intent)
+        }
+
+        // Pindah ke halaman Event
+        eventButton.setOnClickListener {
+            val intent = Intent(this, daftarTransaksi::class.java)
+            startActivity(intent)
+        }
+
+        // Pindah ke halaman Profile
+        profileButton.setOnClickListener {
+            val intent = Intent(this, profile_page::class.java)
+            startActivity(intent)
         }
 
 

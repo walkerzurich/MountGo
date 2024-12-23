@@ -13,22 +13,19 @@
         android:theme="@style/Theme.BAKA"
         tools:targetApi="31">
         <activity
-            android:name=".transaksi.formTransaksi"
+            android:name=".transaksi.transaksiSelesai"
             android:exported="false" />
         <activity
             android:name=".gunung.explore"
             android:exported="false" />
         <activity
-            android:name=".profile.profile"
+            android:name=".profile.profile_page"
             android:exported="false" />
         <activity
-            android:name=".riwayat.DetailEvent"
+            android:name=".riwayat.daftarTransaksi"
             android:exported="false" />
         <activity
-            android:name=".transaksi.transaksiSelesai"
-            android:exported="false" />
-        <activity
-            android:name=".gunung.FormPendakian"
+            android:name=".transaksi.formTransaksi"
             android:exported="false" />
         <activity
             android:name=".gunung.Information"
@@ -49,7 +46,7 @@
             android:name=".loginregister.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".landingpage.LandingPage1"
+            android:name=".home.home"
             android:exported="false" />
         <activity
             android:name=".landingpage.LandingPage2"
@@ -58,7 +55,7 @@
             android:name=".loginregister.Register"
             android:exported="false" />
         <activity
-            android:name=".home.home"
+            android:name=".landingpage.LandingPage1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

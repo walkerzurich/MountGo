@@ -13,20 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="406dp"
         android:background="#016236"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomView"
         app:layout_constraintHeight_percent="0.4"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp" />
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_back_arrow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- CardView untuk form login -->
 
@@ -58,19 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.382"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleText" />
-
-    <TextView
-        android:id="@+id/registerLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
-        android:text="Registrasi"
-        android:textColor="#0B78DB"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/registerText"
         app:layout_constraintTop_toBottomOf="@id/titleText" />
 
     <androidx.cardview.widget.CardView
@@ -131,19 +107,6 @@
 
             <!-- Forgot Password -->
 
-            <TextView
-                android:id="@+id/lupasandiLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="225dp"
-                android:layout_marginTop="20dp"
-                android:text="Lupa Kata Sandi"
-                android:textColor="#0B78DB"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/registerText"
-                app:layout_constraintTop_toBottomOf="@id/titleText" />
-
             <Button
                 android:id="@+id/loginButton"
                 android:layout_width="match_parent"
@@ -158,16 +121,32 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/registerLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:text="Registrasi"
+        android:textColor="#0B78DB"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/registerText"
+        app:layout_constraintTop_toBottomOf="@id/titleText" />
+
+    <TextView
+        android:id="@+id/lupasandiLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Lupa Kata Sandi?"
+        android:textColor="#0B78DB"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/registerText"
+        app:layout_constraintTop_toBottomOf="@id/titleText" />
+
     <!-- Bagian bawah layout berwarna putih -->
-    <View
-        android:id="@+id/bottomView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#EEEEEE"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,10 +18,9 @@
         android:elevation="4dp"
         android:layout_gravity="center">
 
-        <!-- Icon Checkmark -->
-
         <!-- Pesan Thank You -->
         <TextView
+            android:id="@+id/thankYouText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="THANK YOU!"
@@ -31,6 +31,7 @@
             android:layout_marginBottom="8dp" />
 
         <TextView
+            android:id="@+id/successMessageText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Your transaction was successful"
@@ -48,6 +49,7 @@
 
         <!-- Detail Transaksi -->
         <TextView
+            android:id="@+id/transactionDetailsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="DETAIL TRANSAKSI"
@@ -73,10 +75,63 @@
                 android:textColor="#000000" />
 
             <TextView
+                android:id="@+id/namaText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Franz Simon"
+                android:text="-"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Nomor Transaksi -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nomor Transaksi"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/transactionIdText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Alamat -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Alamat"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/addressText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
                 android:textSize="16sp"
                 android:textColor="#000000"
                 android:textStyle="bold" />
@@ -103,9 +158,10 @@
                     android:textColor="#000000" />
 
                 <TextView
+                    android:id="@+id/gunungText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Merbabu"
+                    android:text="-"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="#000000" />
@@ -125,9 +181,10 @@
                     android:textColor="#000000" />
 
                 <TextView
+                    android:id="@+id/viaText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Selo"
+                    android:text="-"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="#000000" />
@@ -139,7 +196,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -150,10 +207,37 @@
                 android:textColor="#000000" />
 
             <TextView
+                android:id="@+id/dateText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Rabu, 27 November 2024"
+                android:text="-"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <!-- Pembayaran Via -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pembayaran Via"
+                android:textSize="16sp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/paymentMethodText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="-"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#000000" />
@@ -162,6 +246,7 @@
 
     <!-- Tombol Kembali -->
     <Button
+        android:id="@+id/buttonBack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#085E28"

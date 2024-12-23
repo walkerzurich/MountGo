@@ -1,59 +1,70 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="#EEEEEE"
+    tools:context=".gunung.explore">
 
-    <!-- Header -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#016236"
-        android:orientation="vertical"
-        android:gravity="center">
+    <!-- Bagian atas layout berwarna hijau dengan teks di tengah -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_background"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@color/green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Teks "Explore" di tengah -->
         <TextView
+            android:id="@+id/tvListGunung"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Event"
-            android:textSize="32sp"
+            android:fontFamily="@font/josefin_sans"
+            android:text="Daftar Transaksi"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            android:gravity="center" />
-    </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Tab Menu -->
-    <LinearLayout
+    <!-- ScrollView di bawah top background -->
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/top_background"
+        app:layout_constraintBottom_toTopOf="@id/header_shortcut_include"
+        android:background="@android:color/white"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- RecyclerView untuk daftar gunung -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGunung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Navbar di bawah layar -->
+    <include
+        android:id="@+id/header_shortcut_include"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="16dp">
+        layout="@layout/navbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Populer"
-            android:backgroundTint="#016236"
-            android:textColor="@color/white" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Semua"
-            android:backgroundTint="@color/white"
-            android:textColor="#016236"
-            android:layout_marginStart="8dp" />
-    </LinearLayout>
-
-    <!-- RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp"
-        android:clipToPadding="false" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

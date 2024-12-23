@@ -14,15 +14,35 @@
         android:background="#016236"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Judul Form -->
+
     <!-- Scrollable Form -->
+
+    <TextView
+        android:id="@+id/formTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Form Pendaki"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/formScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <ScrollView
         android:id="@+id/formScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/bayarButton"
         app:layout_constraintTop_toTopOf="@id/topView"
-        app:layout_constraintBottom_toBottomOf="parent">
+        tools:layout_editor_absoluteX="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,6 +53,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp">
 
@@ -41,8 +62,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="16dp">
-
-                    <!-- Header Form -->
 
                     <!-- Informasi Pendaki -->
                     <TextView
@@ -54,9 +73,9 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/namaText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Franz Simon"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -70,9 +89,9 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/nikText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2252 3159 1811 9438"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -86,9 +105,9 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/alamatText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Villa Hati Bahagia, Jalan Bahagia, Blok A1 No. 10"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -102,9 +121,9 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/teleponText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="6281808523410"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -118,9 +137,9 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/daruratText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="6281808523410"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -134,111 +153,61 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/emailText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="franzsimon@gmail.com"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Usia dan Berat Badan"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp" />
-
-                    <!-- Input Field for Age and Weight -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
-
-                        <com.google.android.material.textfield.TextInputLayout
-
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="8dp"
-                            android:hint="Usia">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="8dp"
-                            android:hint="Berat Badan (KG)">
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="number" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Gunung"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Merbabu"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <!-- Tanggal Booking dan Jumlah Hari Pendakian -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Tanggal Booking dan Jumlah Hari Pendakian"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="8dp"
                         android:orientation="horizontal"
                         android:weightSum="2">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
                             android:hint="Tanggal Booking">
 
                             <EditText
                                 android:id="@+id/bookingDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:focusable="false"
                                 android:clickable="true"
+                                android:focusable="false"
                                 android:inputType="none" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginStart="8dp"
+                            android:layout_weight="1"
                             android:hint="Jumlah Hari Pendakian">
 
                             <EditText
+                                android:id="@+id/pendakianDays"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
+                    <!-- Pendakian Via -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -249,19 +218,17 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp">
+                        android:layout_height="wrap_content">
 
                         <AutoCompleteTextView
-                            android:id="@+id/dropdown_jalur_pendakian"
+                            android:id="@+id/dropdownPendakianVia"
                             android:layout_width="match_parent"
-                            android:layout_height="34dp"
+                            android:layout_height="wrap_content"
                             android:clickable="true"
                             android:focusable="true"
-                            android:inputType="none"
-                            android:popupBackground="@android:color/white" />
+                            android:hint="Pilih Jalur Pendakian"
+                            android:inputType="none" />
                     </com.google.android.material.textfield.TextInputLayout>
-
 
                     <!-- Metode Pembayaran -->
                     <TextView
@@ -279,6 +246,7 @@
                         android:orientation="vertical">
 
                         <Button
+                            android:id="@+id/qrisButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -287,6 +255,7 @@
                             android:textColor="@android:color/black" />
 
                         <Button
+                            android:id="@+id/gopayButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -295,6 +264,7 @@
                             android:textColor="@android:color/black" />
 
                         <Button
+                            android:id="@+id/ovoButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -303,6 +273,7 @@
                             android:textColor="@android:color/black" />
 
                         <Button
+                            android:id="@+id/danaButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -311,6 +282,7 @@
                             android:textColor="@android:color/black" />
 
                         <Button
+                            android:id="@+id/bankTransferButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -318,61 +290,20 @@
                             android:text="Bank Transfer"
                             android:textColor="@android:color/black" />
                     </LinearLayout>
-
-                    <!-- Opsi Bank/Virtual Account -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Bank/Virtual Account"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:orientation="vertical">
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:backgroundTint="#EEEEEE"
-                            android:text="Mandiri"
-                            android:textColor="@android:color/black" />
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:backgroundTint="#EEEEEE"
-                            android:text="BCA"
-                            android:textColor="@android:color/black" />
-                    </LinearLayout>
-
-                    <!-- Tombol Bayar -->
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:backgroundTint="#016236"
-                        android:text="Bayar"
-                        android:textColor="@android:color/white" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Tombol Bayar -->
+    <Button
+        android:id="@+id/bayarButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Form Pendaki"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:layout_margin="16dp"
+        android:backgroundTint="#016236"
+        android:text="Bayar"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="58dp" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

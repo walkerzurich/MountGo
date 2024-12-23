@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.baka.R
 import com.example.baka.gunung.explore
+import com.example.baka.home.home
 import com.google.firebase.database.*
 
 class loginActivity : AppCompatActivity() {
@@ -24,6 +25,24 @@ class loginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // Bind TextView
+        val registerLink = findViewById<TextView>(R.id.registerLink)
+
+        // Set click listener untuk berpindah ke LoginActivity
+        registerLink.setOnClickListener {
+            val intent = Intent(this, Register::class.java)
+            startActivity(intent)
+        }
+
+        // Bind TextView
+        val lupasandiLink = findViewById<TextView>(R.id.lupasandiLink)
+
+        // Set click listener untuk berpindah ke LoginActivity
+        lupasandiLink.setOnClickListener {
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
+
         // Inisialisasi Firebase Database
         database = FirebaseDatabase.getInstance("https://mountgo-baka-default-rtdb.asia-southeast1.firebasedatabase.app").reference
 
@@ -31,11 +50,6 @@ class loginActivity : AppCompatActivity() {
         emailEditText = findViewById(R.id.inputEmail)
         passwordEditText = findViewById(R.id.inputPassword)
         loginButton = findViewById(R.id.loginButton)
-        registerLink = findViewById(R.id.registerLink)
-
-        // Tombol Back
-        val backButton: ImageView = findViewById(R.id.backButton)
-        backButton.setOnClickListener { onBackPressed() }
 
         // Pindah ke halaman registrasi
         registerLink.setOnClickListener {
@@ -76,7 +90,7 @@ class loginActivity : AppCompatActivity() {
                         Toast.makeText(this@loginActivity, "Login Berhasil!", Toast.LENGTH_SHORT).show()
 
                         // Pindah ke halaman explore
-                        val intent = Intent(this@loginActivity, explore::class.java)
+                        val intent = Intent(this@loginActivity, home::class.java)
                         startActivity(intent)
                         finish()
                         break

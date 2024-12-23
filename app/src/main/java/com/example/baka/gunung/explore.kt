@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baka.R
 import com.example.baka.home.home
-import com.example.baka.profile.profile
+import com.example.baka.profile.profile_page
 import com.example.baka.riwayat.daftarTransaksi
 import com.google.firebase.database.*
 
@@ -48,7 +48,7 @@ class explore : AppCompatActivity() {
 
         // Pindah ke halaman Profile
         profileButton.setOnClickListener {
-            val intent = Intent(this, profile::class.java)
+            val intent = Intent(this, profile_page::class.java)
             startActivity(intent)
         }
 

@@ -1,4 +1,4 @@
-package com.example.baka.riwayat
+package com.example.baka.profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,13 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.baka.R
 import com.example.baka.gunung.explore
 import com.example.baka.home.home
-import com.example.baka.profile.profile_page
+import com.example.baka.riwayat.daftarTransaksi
 
-class daftarTransaksi : AppCompatActivity() {
+class profile_page : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_daftartransaksi)
+        setContentView(R.layout.activity_profile)
+
         // Inisialisasi tombol navbar
         val homeButton = findViewById<Button>(R.id.homeButton)
         val exploreButton = findViewById<Button>(R.id.exploreButton)
@@ -45,4 +46,5 @@ class daftarTransaksi : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 }

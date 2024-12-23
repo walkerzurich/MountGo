@@ -1,10 +1,14 @@
 package com.example.baka.gunung
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.baka.R
+import com.example.baka.transaksi.formTransaksi
 import com.google.firebase.database.*
 
 class Information : AppCompatActivity() {
@@ -28,6 +32,7 @@ class Information : AppCompatActivity() {
         val tvDeskripsiGunung = findViewById<TextView>(R.id.tvDeskripsiGunung)
         val tvJamOperasional = findViewById<TextView>(R.id.tvJamOperasional)
         val tvMedan = findViewById<TextView>(R.id.tvMedan)
+        val btnBooking = findViewById<Button>(R.id.btnBooking)
 
         // Fetch data from Firebase
         database.orderByChild("idNumber").equalTo(idNumber)
@@ -57,5 +62,29 @@ class Information : AppCompatActivity() {
                     tvNamaGunung.text = "Error: ${error.message}"
                 }
             })
+
+        // Handle Booking button click
+        btnBooking.setOnClickListener {
+            val intent = Intent(this, formTransaksi::class.java)
+            intent.putExtra("GUNUNG_ID", idNumber) // Pass Gunung ID to the next activity
+            startActivity(intent)
+        }
+
+        // Inisialisasi Toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        // Aktifkan tombol Back
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
     }
+
+    // Handle tombol Back
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }

@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.database)
+
     implementation ("com.google.firebase:firebase-database:20.3.1")
     implementation ("com.google.firebase:firebase-auth:21.3.0")
     implementation ("com.google.android.material:material:1.5.0")
