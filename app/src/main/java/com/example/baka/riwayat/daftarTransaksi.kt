@@ -13,12 +13,16 @@ import com.example.baka.home.home
 import com.example.baka.loginregister.loginActivity
 import com.example.baka.profile.profile_page
 import com.example.baka.utils.SessionManager
-
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class daftarTransaksi : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: DaftarTransaksiAdapter
+    private val transaksiList = mutableListOf<daftarTran>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,62 +37,66 @@ class daftarTransaksi : AppCompatActivity() {
             finish()
         }
 
-        // Jika login, ambil detail pengguna
+        // Jika login, ambil user ID dari sesi
         val userDetails = sessionManager.getUserDetails()
-        val userName = userDetails["user_name"]
-        val email = userDetails["email"]
-
-        // Inisialisasi tombol navbar
-        val homeButton = findViewById<Button>(R.id.homeButton)
-        val exploreButton = findViewById<Button>(R.id.exploreButton)
-        val eventButton = findViewById<Button>(R.id.eventButton)
-        val profileButton = findViewById<Button>(R.id.profileButton)
-
-        // Pindah ke halaman Home
-        homeButton.setOnClickListener {
-            val intent = Intent(this, home::class.java)
-            startActivity(intent)
-        }
-
-        // Pindah ke halaman Explore
-        exploreButton.setOnClickListener {
-            val intent = Intent(this, explore::class.java)
-            startActivity(intent)
-        }
-
-        // Pindah ke halaman Event
-        eventButton.setOnClickListener {
-            val intent = Intent(this, daftarTransaksi::class.java)
-            startActivity(intent)
-        }
-
-        // Pindah ke halaman Profile
-        profileButton.setOnClickListener {
-            val intent = Intent(this, profile_page::class.java)
-            startActivity(intent)
-        }
-
-        // Data Dummy
-        val transaksiList = listOf(
-            daftarTran("Camping Ceria", "Gn. Merbabu, Boyolali, Jawa Tengah", "05 November 2024", R.drawable.gunung),
-            daftarTran("Hiking Seru", "Gn. Gede, Bogor, Jawa Barat", "15 November 2024", R.drawable.gunung),
-            daftarTran("Adventure Extreme", "Gn. Semeru, Lumajang, Jawa Timur", "25 November 2024", R.drawable.gunung)
-        )
+        val userId = userDetails["user_id"]
 
         // Inisialisasi RecyclerView
         recyclerView = findViewById(R.id.rvDaftarTransaksi)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Inisialisasi Adapter
         adapter = DaftarTransaksiAdapter(transaksiList) { transaksi ->
-            // Arahkan ke halaman detail transaksi
+            // Arahkan ke halaman detail transaksi dengan data lengkap
             val intent = Intent(this, detail_transaksi::class.java)
-            intent.putExtra("TITLE", transaksi.title)
-            intent.putExtra("LOCATION", transaksi.location)
-            intent.putExtra("DATE", transaksi.date)
+            intent.putExtra("userId", userId) // Kirim userId
+            intent.putExtra("transactionId", transaksi.transactionId) // Kirim transactionId
+            intent.putExtra("name", transaksi.name)
+            intent.putExtra("gunung", transaksi.gunung)
+            intent.putExtra("via", transaksi.via)
+            intent.putExtra("date", transaksi.date)
+            intent.putExtra("paymentMethod", transaksi.paymentMethod)
             startActivity(intent)
         }
 
+
         recyclerView.adapter = adapter
+
+        // Ambil data transaksi dari Firebase
+        if (!userId.isNullOrEmpty()) {
+            val databaseRef = FirebaseDatabase.getInstance().getReference("transactions/$userId")
+            databaseRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    transaksiList.clear() // Bersihkan daftar sebelumnya
+                    for (data in snapshot.children) {
+                        val transaction = data.getValue(daftarTran::class.java)
+                        transaction?.let { transaksiList.add(it) }
+                    }
+                    adapter.notifyDataSetChanged()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@daftarTransaksi, "Gagal mengambil data: ${error.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        } else {
+            Toast.makeText(this, "User ID tidak valid!", Toast.LENGTH_SHORT).show()
+        }
+
+        // Inisialisasi tombol navbar
+        findViewById<Button>(R.id.homeButton).setOnClickListener {
+            startActivity(Intent(this, home::class.java))
+        }
+
+        findViewById<Button>(R.id.exploreButton).setOnClickListener {
+            startActivity(Intent(this, explore::class.java))
+        }
+
+        findViewById<Button>(R.id.eventButton).setOnClickListener {
+            startActivity(Intent(this, daftarTransaksi::class.java))
+        }
+
+        findViewById<Button>(R.id.profileButton).setOnClickListener {
+            startActivity(Intent(this, profile_page::class.java))
+        }
     }
 }

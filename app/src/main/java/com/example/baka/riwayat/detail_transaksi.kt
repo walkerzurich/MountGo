@@ -1,14 +1,12 @@
 package com.example.baka.riwayat
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.baka.R
-import com.example.baka.loginregister.loginActivity
-import com.example.baka.utils.SessionManager
+import com.google.firebase.database.FirebaseDatabase
 
 class detail_transaksi : AppCompatActivity() {
 
@@ -16,40 +14,49 @@ class detail_transaksi : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_transaksi)
 
-        val sessionManager = SessionManager(this)
+        // Ambil data dari Intent
+        val userId = intent.getStringExtra("userId") // Ambil userId dari Intent
+        val transactionId = intent.getStringExtra("transactionId")
+        val name = intent.getStringExtra("name")
+        val gunung = intent.getStringExtra("gunung")
+        val via = intent.getStringExtra("via")
+        val date = intent.getStringExtra("date")
+        val paymentMethod = intent.getStringExtra("paymentMethod")
 
-        // Cek apakah pengguna sudah login
-        if (!sessionManager.isLoggedIn()) {
-            // Jika belum login, pindahkan ke halaman login
-            startActivity(Intent(this, loginActivity::class.java))
-            finish()
-        }
+        // Inisialisasi UI
+        val tvNoPesananValue: TextView = findViewById(R.id.tvNoPesananValue)
+        val tvNamaValue: TextView = findViewById(R.id.tvNamaValue)
+        val tvGunungValue: TextView = findViewById(R.id.tvGunungValue)
+        val tvJalurValue: TextView = findViewById(R.id.tvJalurValue)
+        val tvWaktuValue: TextView = findViewById(R.id.tvWaktuValue)
+        val tvPembayaranValue: TextView = findViewById(R.id.tvPembayaranValue)
+        val btnCancel: Button = findViewById(R.id.btnCancel)
 
-        // Jika login, ambil detail pengguna
-        val userDetails = sessionManager.getUserDetails()
-        val userName = userDetails["user_name"]
-        val email = userDetails["email"]
+        // Set data ke UI
+        tvNoPesananValue.text = transactionId
+        tvNamaValue.text = name
+        tvGunungValue.text = gunung
+        tvJalurValue.text = via
+        tvWaktuValue.text = date
+        tvPembayaranValue.text = paymentMethod
 
-        // Bind views
-        val btnCancel = findViewById<Button>(R.id.btnCancel)
-        val tvNoPesanan = findViewById<TextView>(R.id.tvNoPesananValue)
-        val tvNama = findViewById<TextView>(R.id.tvNamaValue)
-        val tvGunung = findViewById<TextView>(R.id.tvGunungValue)
-        val tvJalur = findViewById<TextView>(R.id.tvJalurValue)
-        val tvWaktu = findViewById<TextView>(R.id.tvWaktuValue)
-        val tvPembayaran = findViewById<TextView>(R.id.tvPembayaranValue)
-
-        // Dummy data
-        tvNoPesanan.text = "18273821789379231"
-        tvNama.text = "Franz Simon"
-        tvGunung.text = "Merbabu"
-        tvJalur.text = "Selo"
-        tvWaktu.text = "Rabu, 27 November 2024"
-        tvPembayaran.text = "QRIS"
-
-        // Button click listener
+        // Logika tombol batal
         btnCancel.setOnClickListener {
-            Toast.makeText(this, "Pesanan dibatalkan", Toast.LENGTH_SHORT).show()
+            if (!userId.isNullOrEmpty() && !transactionId.isNullOrEmpty()) {
+                // Path Firebase untuk transaksi
+                val databaseRef = FirebaseDatabase.getInstance()
+                    .getReference("transactions/$userId/$transactionId")
+
+                // Hapus data transaksi
+                databaseRef.removeValue().addOnSuccessListener {
+                    Toast.makeText(this, "Transaksi dibatalkan", Toast.LENGTH_SHORT).show()
+                    finish() // Kembali ke halaman sebelumnya
+                }.addOnFailureListener { error ->
+                    Toast.makeText(this, "Gagal menghapus transaksi: ${error.message}", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "User ID atau Transaksi ID tidak ditemukan", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
