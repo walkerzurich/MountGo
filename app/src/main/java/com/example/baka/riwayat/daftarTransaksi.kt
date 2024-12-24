@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.baka.R
 import com.example.baka.gunung.explore
 import com.example.baka.home.home
+import com.example.baka.loginregister.loginActivity
 import com.example.baka.profile.profile_page
+import com.example.baka.utils.SessionManager
 
 
 class daftarTransaksi : AppCompatActivity() {
@@ -21,6 +23,20 @@ class daftarTransaksi : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daftartransaksi)
+
+        val sessionManager = SessionManager(this)
+
+        // Cek apakah pengguna sudah login
+        if (!sessionManager.isLoggedIn()) {
+            // Jika belum login, pindahkan ke halaman login
+            startActivity(Intent(this, loginActivity::class.java))
+            finish()
+        }
+
+        // Jika login, ambil detail pengguna
+        val userDetails = sessionManager.getUserDetails()
+        val userName = userDetails["user_name"]
+        val email = userDetails["email"]
 
         // Inisialisasi tombol navbar
         val homeButton = findViewById<Button>(R.id.homeButton)

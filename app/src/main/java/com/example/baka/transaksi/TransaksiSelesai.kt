@@ -19,7 +19,6 @@ class transaksiSelesai : AppCompatActivity() {
         findViewById<TextView>(R.id.namaText).text = transactionData["name"]
         findViewById<TextView>(R.id.transactionIdText).text = transactionData["transactionId"]
         findViewById<TextView>(R.id.addressText).text = transactionData["address"]
-        findViewById<TextView>(R.id.gunungText).text = transactionData["mountain"]
         findViewById<TextView>(R.id.viaText).text = transactionData["via"]
         findViewById<TextView>(R.id.dateText).text = transactionData["date"]
         findViewById<TextView>(R.id.paymentMethodText).text = transactionData["paymentMethod"]

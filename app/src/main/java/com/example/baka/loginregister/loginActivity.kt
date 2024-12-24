@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.baka.R
-import com.example.baka.gunung.explore
 import com.example.baka.home.home
+import com.example.baka.utils.SessionManager
 import com.google.firebase.database.*
 
 class loginActivity : AppCompatActivity() {
@@ -20,15 +19,19 @@ class loginActivity : AppCompatActivity() {
     private lateinit var loginButton: Button
     private lateinit var registerLink: TextView
     private lateinit var database: DatabaseReference
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // Inisialisasi SessionManager
+        sessionManager = SessionManager(this)
+
         // Bind TextView
         val registerLink = findViewById<TextView>(R.id.registerLink)
 
-        // Set click listener untuk berpindah ke LoginActivity
+        // Set click listener untuk berpindah ke RegisterActivity
         registerLink.setOnClickListener {
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
@@ -37,7 +40,7 @@ class loginActivity : AppCompatActivity() {
         // Bind TextView
         val lupasandiLink = findViewById<TextView>(R.id.lupasandiLink)
 
-        // Set click listener untuk berpindah ke LoginActivity
+        // Set click listener untuk berpindah ke ForgotPasswordActivity
         lupasandiLink.setOnClickListener {
             val intent = Intent(this, ForgotPasswordActivity::class.java)
             startActivity(intent)
@@ -50,12 +53,6 @@ class loginActivity : AppCompatActivity() {
         emailEditText = findViewById(R.id.inputEmail)
         passwordEditText = findViewById(R.id.inputPassword)
         loginButton = findViewById(R.id.loginButton)
-
-        // Pindah ke halaman registrasi
-        registerLink.setOnClickListener {
-            val intent = Intent(this, Register::class.java)
-            startActivity(intent)
-        }
 
         // Login Button
         loginButton.setOnClickListener {
@@ -79,17 +76,26 @@ class loginActivity : AppCompatActivity() {
                 var loginSuccess = false
 
                 for (userSnapshot in snapshot.children) {
+                    val userId = userSnapshot.key
                     val storedEmail = userSnapshot.child("email").getValue(String::class.java)
                     val storedPassword = userSnapshot.child("password").getValue(String::class.java)
+                    val fullName = userSnapshot.child("fullName").getValue(String::class.java)
 
                     // Cek apakah email dan password cocok
                     if (storedEmail == email && storedPassword == password) {
                         loginSuccess = true
 
+                        // Simpan data ke session
+                        sessionManager.createLoginSession(
+                            userId = userId ?: "",
+                            userName = fullName ?: "",
+                            email = storedEmail ?: ""
+                        )
+
                         // Login berhasil
                         Toast.makeText(this@loginActivity, "Login Berhasil!", Toast.LENGTH_SHORT).show()
 
-                        // Pindah ke halaman explore
+                        // Pindah ke halaman home
                         val intent = Intent(this@loginActivity, home::class.java)
                         startActivity(intent)
                         finish()

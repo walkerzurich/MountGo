@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.baka.R
+import com.example.baka.loginregister.loginActivity
+import com.example.baka.utils.SessionManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
@@ -16,6 +18,18 @@ class formTransaksi : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form_transaksi)
 
+        val sessionManager = SessionManager(this)
+
+        // Cek apakah pengguna sudah login
+        if (!sessionManager.isLoggedIn()) {
+            startActivity(Intent(this, loginActivity::class.java))
+            finish()
+        }
+
+        // Ambil detail pengguna dari sesi
+        val userDetails = sessionManager.getUserDetails()
+        val userId = userDetails["user_id"]
+
         // Inisialisasi elemen UI
         val namaText: TextView = findViewById(R.id.namaText)
         val nikText: TextView = findViewById(R.id.nikText)
@@ -24,9 +38,41 @@ class formTransaksi : AppCompatActivity() {
         val daruratText: TextView = findViewById(R.id.daruratText)
         val emailText: TextView = findViewById(R.id.emailText)
 
-        val dropdownPendakianVia: AutoCompleteTextView = findViewById(R.id.dropdownPendakianVia)
         val bookingDateEditText: EditText = findViewById(R.id.bookingDate)
+        val bayarButton: Button = findViewById(R.id.bayarButton)
 
+        // Ambil data pengguna dari database Firebase
+        if (!userId.isNullOrEmpty()) {
+            val database = FirebaseDatabase.getInstance().getReference("user/$userId")
+            database.get().addOnSuccessListener { snapshot ->
+                if (snapshot.exists()) {
+                    val user = snapshot.value as Map<String, String>
+                    namaText.text = user["fullName"] ?: "-"
+                    nikText.text = user["idNumber"] ?: "-"
+                    alamatText.text = user["address"] ?: "-"
+                    teleponText.text = user["phoneNumber"] ?: "-"
+                    daruratText.text = user["emergencyPhoneNumber"] ?: "-"
+                    emailText.text = user["email"] ?: "-"
+                } else {
+                    Toast.makeText(this, "Data pengguna tidak ditemukan!", Toast.LENGTH_SHORT).show()
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Gagal mengambil data pengguna: ${it.message}", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(this, "User ID tidak valid!", Toast.LENGTH_SHORT).show()
+        }
+
+        // Setup Dropdown untuk Pendakian Via
+        val dropdownPendakianVia: AutoCompleteTextView = findViewById(R.id.dropdownPendakianVia)
+        val viaOptions = listOf("Via A", "Via B", "Via C")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, viaOptions)
+        dropdownPendakianVia.setAdapter(adapter)
+        dropdownPendakianVia.setOnItemClickListener { _, _, position, _ ->
+            Toast.makeText(this, "Jalur yang dipilih: ${viaOptions[position]}", Toast.LENGTH_SHORT).show()
+        }
+
+        // Inisialisasi tombol metode pembayaran
         val paymentButtons = listOf(
             findViewById<Button>(R.id.qrisButton),
             findViewById<Button>(R.id.gopayButton),
@@ -35,55 +81,39 @@ class formTransaksi : AppCompatActivity() {
             findViewById<Button>(R.id.bankTransferButton)
         )
 
-        val bayarButton: Button = findViewById(R.id.bayarButton)
+        var selectedPaymentMethod = "" // Variabel untuk menyimpan pilihan pembayaran
 
-        // Setup Dropdown untuk Pendakian Via
-        val viaOptions = listOf("Via A", "Via B", "Via C")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, viaOptions)
-        dropdownPendakianVia.setAdapter(adapter)
-
-        // Setup Date Picker untuk Booking Date
-        bookingDateEditText.setOnClickListener {
-            showDatePickerDialog(bookingDateEditText)
-        }
-
-        // Ambil data dari Firebase
-        val auth = FirebaseAuth.getInstance()
-        val currentUser = auth.currentUser
-        val userId = currentUser?.uid
-
-        if (userId != null) {
-            val database = FirebaseDatabase.getInstance().getReference("user/$userId")
-            database.get().addOnSuccessListener { snapshot ->
-                val user = snapshot.value as Map<String, String>
-                namaText.text = user["fullName"]
-                nikText.text = user["idNumber"]
-                alamatText.text = user["address"]
-                teleponText.text = user["phoneNumber"]
-                daruratText.text = user["emergencyPhoneNumber"]
-                emailText.text = user["email"]
-            }
-        }
-
-        // Setup tombol metode pembayaran
-        var selectedPaymentMethod = ""
         paymentButtons.forEach { button ->
             button.setOnClickListener {
+                // Reset warna semua tombol
                 paymentButtons.forEach { it.setBackgroundColor(resources.getColor(android.R.color.darker_gray)) }
+
+                // Ubah warna tombol yang ditekan menjadi hijau
                 button.setBackgroundColor(resources.getColor(R.color.green))
-                selectedPaymentMethod = button.text.toString()
+
+                // Simpan nama metode pembayaran sesuai ID tombol
+                selectedPaymentMethod = when (button.id) {
+                    R.id.qrisButton -> "QRIS"
+                    R.id.gopayButton -> "GoPay"
+                    R.id.ovoButton -> "OVO"
+                    R.id.danaButton -> "DANA"
+                    R.id.bankTransferButton -> "Bank Transfer"
+                    else -> ""
+                }
+
+                Toast.makeText(this, "Metode pembayaran dipilih: $selectedPaymentMethod", Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Tombol "Bayar"
+        // Tombol Bayar
         bayarButton.setOnClickListener {
-            if (userId == null) {
+            if (userId.isNullOrEmpty()) {
                 Toast.makeText(this, "User tidak terautentikasi!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Validasi data sebelum pembayaran
-            if (dropdownPendakianVia.text.toString().isEmpty() || bookingDateEditText.text.toString().isEmpty()) {
+            // Validasi input jalur pendakian
+            if (dropdownPendakianVia.text.isNullOrEmpty() || bookingDateEditText.text.isNullOrEmpty()) {
                 Toast.makeText(this, "Harap lengkapi data pendakian!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -91,7 +121,7 @@ class formTransaksi : AppCompatActivity() {
             // Buat nomor transaksi unik
             val transactionId = "TX-${UUID.randomUUID()}"
 
-            // Simpan data transaksi ke Firebase
+            // Simpan data transaksi
             val transaction = mapOf(
                 "transactionId" to transactionId,
                 "name" to namaText.text.toString(),
@@ -100,14 +130,13 @@ class formTransaksi : AppCompatActivity() {
                 "phone" to teleponText.text.toString(),
                 "emergencyContact" to daruratText.text.toString(),
                 "email" to emailText.text.toString(),
-                "via" to dropdownPendakianVia.text.toString(),
+                "via" to dropdownPendakianVia.text.toString(), // Simpan jalur pendakian
                 "date" to bookingDateEditText.text.toString(),
-                "paymentMethod" to selectedPaymentMethod
+                "paymentMethod" to selectedPaymentMethod // Contoh metode pembayaran
             )
 
             val transactionRef = FirebaseDatabase.getInstance().getReference("transactions/$userId/$transactionId")
             transactionRef.setValue(transaction).addOnSuccessListener {
-                // Pindah ke halaman transaksi selesai
                 val intent = Intent(this, transaksiSelesai::class.java)
                 intent.putExtra("transactionData", HashMap(transaction))
                 startActivity(intent)
@@ -136,7 +165,4 @@ class formTransaksi : AppCompatActivity() {
         )
         datePickerDialog.show()
     }
-    // Get Gunung ID from Intent
-    val gunungId = intent.getStringExtra("GUNUNG_ID")
-
 }

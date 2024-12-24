@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.baka.R
+import com.example.baka.loginregister.loginActivity
 import com.example.baka.transaksi.formTransaksi
+import com.example.baka.utils.SessionManager
 import com.google.firebase.database.*
 
 class Information : AppCompatActivity() {
@@ -21,6 +23,20 @@ class Information : AppCompatActivity() {
 
         // Get Gunung ID from Intent
         val idNumber = intent.getStringExtra("GUNUNG_ID") ?: return
+
+        val sessionManager = SessionManager(this)
+
+        // Cek apakah pengguna sudah login
+        if (!sessionManager.isLoggedIn()) {
+            // Jika belum login, pindahkan ke halaman login
+            startActivity(Intent(this, loginActivity::class.java))
+            finish()
+        }
+
+        // Jika login, ambil detail pengguna
+        val userDetails = sessionManager.getUserDetails()
+        val userName = userDetails["user_name"]
+        val email = userDetails["email"]
 
         // Initialize Firebase Database reference
         database = FirebaseDatabase.getInstance().getReference("gunung")
